@@ -20,8 +20,8 @@ function closeConnection(connection) {
 exports.login = (emailaddress, password, req, res) => {
     let connection = createConnection();
     try {
-        let query = "SELECT * FROM USERACCOUNTS WHERE email_address='" + emailaddress 
-        + "' and password='" + password + "';";
+        let query = "SELECT * FROM USERACCOUNTS WHERE email_address='" + connection.escape(emailaddress) 
+        + "' and password='" + connection.escape(password) + "';";
         connection.query(query, function (error, results, fields) {
             if (error) throw error;
             let currentUser = results[0];
