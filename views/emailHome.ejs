@@ -1,0 +1,25 @@
+<% include partials/header %>
+<div style="align-content: flex-end;">You have <% if(emails) {%> <span> <%= emails.length %> <% } else { %> <%= '0' %> <%}%> Emails</div>
+<% if(emails) {%>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">From</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+                <% for(var i = 0; i < emails.length; i++) { 
+                    var singleEmail = emails[i]; %>
+                <tr>
+                    <td><%= singleEmail.from_address %></td>
+                    <td><%= singleEmail.subject %></td>
+                    <td><%= singleEmail.time %></td>
+                </tr>
+                <% } %>
+        </tbody>
+      </table>
+<% } %>
+
+<% include partials/footer %>
